@@ -1,14 +1,16 @@
 1. How you can break down a large problem instance into one or more smaller instances? Your
 answer should include how the solution to the original problem is constructed from the sub-
 problems and why this breakdown makes sense.
-
+- breaking down into paths and max score of each vertex so when we come across the vertex again we already know the max score
 
 2. What are the base cases of this problem, and what are their solutions?
-
+- max vertex = 1 / or 2 circles (?)
+- if value is already in the hash table
 
 3. What data structure would you use to store the partial solutions to this problem? Justify
 your answer.
-
+- hash table
+- O(1) if you already have the value stored so its fast
 
 4. Give pseudocode for an algorithm that uses memoization to compute the maximum score.
 
