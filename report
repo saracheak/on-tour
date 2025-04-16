@@ -1,0 +1,28 @@
+1. How you can break down a large problem instance into one or more smaller instances? Your
+answer should include how the solution to the original problem is constructed from the sub-
+problems and why this breakdown makes sense.
+
+
+2. What are the base cases of this problem, and what are their solutions?
+
+
+3. What data structure would you use to store the partial solutions to this problem? Justify
+your answer.
+
+
+4. Give pseudocode for an algorithm that uses memoization to compute the maximum score.
+
+
+5. What is the time complexity of your memoized algorithm?
+
+
+6. Give pseudocode for an iterative algorithm for this problem.
+
+
+7. Describe how you could modify your algorithm to identify the maximum-scoring tour, not
+just the maximum possible score.
+
+
+Bonus Describe (briefly) how you would modify your algorithm to account for adjacent equal values
+and wildcards. There is likely no algorithm that is guaranteed to solve this problem in
+polynomial time, so just focus on solving the problem correctly rather than quickly
