@@ -1,3 +1,8 @@
+Feel Free to change anything! More efficient or creative is great!
+
+
+
+
 Vertex.java 
 It is main structure I use to store each vertex's information, including its value called val as int, its weight call weight as int, its number of nearby vertex called numbersOfVertex as int and the nearby vertexs store in ArrayList<int> called nearbyvertex.
 It also contains functions like getVal or getWeight but I'm not sure if we need to make it more formal. For example, declear two functions about val, one is getVal and other one is changeVal to make private int val.
