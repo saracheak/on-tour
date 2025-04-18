@@ -13,10 +13,44 @@ your answer.
 - O(1) if you already have the value stored so its fast
 
 4. Give pseudocode for an algorithm that uses memoization to compute the maximum score.
+dp[1…n] 
+next[1…n]
+visited[1..n]
 
+Function computeMax(i):
+	if visited[i]:
+		return dp[i]
+	visited[i] = true
+	maxNeighbor = 0 
+	next[i] = null
+	
+	for each neighbor j of space i:
+		if value[j] >  value[i]:
+			score = computeMax(j)
+			if score > maxNeighbor:
+				maxNeighbor = score
+				next[i] = j
+	dp[i] = points[i] + maxNeighbor
+	return dp[i]
+
+Function onTour(n):
+	maxScore = 0
+	start = 1
+	
+	for i = 1 to n:
+		score = computeMax(i)
+		if score > maxScore:
+			maxScore = score
+			start = i
+	path = []
+	curr = start
+	while curr != null:
+		path.append(curr)
+		curr = next[curr]
+	return (maxSore, path)
 
 5. What is the time complexity of your memoized algorithm?
-
+O(n+m)
 
 6. Give pseudocode for an iterative algorithm for this problem.
 
