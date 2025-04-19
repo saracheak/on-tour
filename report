@@ -13,41 +13,49 @@ your answer.
 - O(1) if you already have the value stored so its fast
 
 4. Give pseudocode for an algorithm that uses memoization to compute the maximum score.
-dp[1…n] 
-next[1…n]
-visited[1..n]
+// Global arrays
+dp[1…n]       // dp[i] = max score starting from space i
+visited[1…n] // array indicating true if i already visited, initialized to all false
+nb[1…n]       // list of neighbors adjacent to space i
+value[1…n]  // number written in space i
+points[1…n] // point value for the space(1 or 2)
+next[1…n]    // best next node after i on max scoring path, initialized to null
 
-Function computeMax(i):
+def calcScore(n):
 	if visited[i]:
 		return dp[i]
 	visited[i] = true
-	maxNeighbor = 0 
+	best = 0
 	next[i] = null
-	
-	for each neighbor j of space i:
-		if value[j] >  value[i]:
-			score = computeMax(j)
-			if score > maxNeighbor:
-				maxNeighbor = score
-				next[i] = j
-	dp[i] = points[i] + maxNeighbor
+
+// Explore neighbors with higher values
+	for neighbor j in nb[i]:
+		if value[j] > value[i]:
+			score = calcScore(j)
+			if score > best:
+				best  = score
+				next[i] = j  // tracking next best space
+	dp[i] = points[i] + best
 	return dp[i]
 
-Function onTour(n):
+def getMaxScore(n):
 	maxScore = 0
 	start = 1
 	
-	for i = 1 to n:
-		score = computeMax(i)
+	// Getting score for all starting nodes
+	for i= 1 to n:
+		score = calcScore(i)
 		if score > maxScore:
 			maxScore = score
 			start = i
+
+	// Reconstructing best path
 	path = []
-	curr = start
-	while curr != null:
-		path.append(curr)
-		curr = next[curr]
-	return (maxSore, path)
+  	while start != null:
+		path.append(start)
+		start = next(start)
+
+	return(maxScore, path)
 
 5. What is the time complexity of your memoized algorithm?
 O(n+m)
