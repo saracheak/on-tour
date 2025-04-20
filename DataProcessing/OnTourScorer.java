@@ -1,11 +1,13 @@
+package DataProcessing;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
-
-public class Read {
+public class OnTourScorer {
     
     public static List<Vertex> vertices = new ArrayList<>(); 
 
@@ -34,6 +36,14 @@ public class Read {
                 result.add(vertex);
             }
         }
+        for(Vertex vertex : result) {
+            for (int lineIndex : vertex.nearbyVertex) {
+                if (lineIndex >= 0 && lineIndex <= result.size()) {
+                    int neighborVal = result.get(lineIndex).getVal();
+                    vertex.nearbyVertexValues.add(neighborVal);
+                }
+            }
+        }
         return result;
     }
 
@@ -50,14 +60,14 @@ public class Read {
             int weight = Integer.parseInt(tokens[1]);
             int numbersOfVertex = Integer.parseInt(tokens[2]);
             ArrayList<Integer> nearbyVertex = new ArrayList<>();
-        if (tokens.length > 3) {
-            nearbyVertex = new ArrayList<>();
-            for (int i = 3; i < tokens.length; i++) {
-                int num = Integer.parseInt(tokens[i]);
-                nearbyVertex.add(num);
+            ArrayList<Integer> nearbyVertexValues = new ArrayList<>();
+            if (tokens.length > 3) {
+                for (int i = 3; i < tokens.length; i++) {
+                    int num = Integer.parseInt(tokens[i]);
+                    nearbyVertex.add(num-1);
+                }
             }
-        }
-            return new Vertex(val, weight, numbersOfVertex, nearbyVertex);
+            return new Vertex(val, weight, numbersOfVertex, nearbyVertex, nearbyVertexValues);
         } catch (NumberFormatException e) {
             System.err.println("Error, skip " + line);
             return null;
@@ -65,7 +75,7 @@ public class Read {
     }
     
         public static List<Vertex> getVertices() {
-        String fileName = "example-input.txt";
+        String fileName = "small-input.txt";
         try {
             List<String> validLines = readLines(fileName);
             vertices = parseLines(validLines);
@@ -82,8 +92,13 @@ public class Read {
         vertices.forEach(v -> System.out.println(
             "Val: " + v.getVal() + 
             ", Weight: " + v.getWeight() + 
-            ", Nearby: " + v.getNearbyVertex()
+            ", Nearby: " + v.getNearbyVertex() +
+            ", NearbyValues: " + v.getNearbyVertexValues()
         ));
+
+        Hashtable<Integer,Integer> hashTable = ArrayListToHashTable.vertexToHash((ArrayList<Vertex>) vertices);
+        System.out.println(hashTable);
+//        Algorithm.algo(vertices, hashTable);
     }
 
 }
