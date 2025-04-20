@@ -8,7 +8,7 @@ public class ArrayListToHashTable {
     
     static public Hashtable<Integer,Integer> vertexToHash(ArrayList<Vertex> vertices){
         for (Vertex vertex : vertices) {
-            vertexHashTable.put(vertex.getVal(), 0);
+            vertexHashTable.put(vertex.getVal(), vertex.getWeight());
         }
         return vertexHashTable;
     }
