@@ -1,2 +1,3 @@
-hello !!!!!
-let's get an A !!!
+OnTourScorer.java is in DataProcessing folder
+
+Make sure to change the value of the filename in OnTourScorer.getVertices()
