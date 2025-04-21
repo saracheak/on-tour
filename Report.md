@@ -18,17 +18,16 @@ score in the hashtable.
 ### 2. What are the base cases of this problem, and what are their solutions?
 Base Case 1: The vertex value has the maximum value out of all vertices in the graph, therefore return the value
 of its weight/score (1 or 2).
+
 Base Case 2: The vertex is not adjacent to any vertices with a larger value, therefore we cannot "go" anywhere
 and we return the value of its weight/score (1 or 2).
+
 Base Case 3: The vertex already has a max_path value in the hashtable. We have already calculated the optimal max 
 path to go from this vertex, so we return the value of the max_path of this vertex stored in the hashtable.
 
 
 ### 3. What data structure would you use to store the partial solutions to this problem? Justify your answer.
-- hash table
-- O(1) if you already have the value stored so its fast
-
-(TODO)
+We used a hash table for this as we needed a structure that could map our vertex to its maximum path score. We used a hash table of size n (number of vertices) with the vertex value as the key and maximum path score (or default if we haven't calculated it yet) as value. This uses space complexity of O(n) as the size of the hash table is proportional to the number of keys and values. The time complexity for retrieving any element in the hash table is O(1), which is important as we often want to search for if a vertex's max_path has already been calculated. Overall we used a hashtable as the space and time complexity was reasonable and it fulfilled our requirements.
 
 
 ### 4. Give pseudocode for an algorithm that uses memoization to compute the maximum score.
