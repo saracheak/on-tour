@@ -108,28 +108,36 @@ int Max=0
  Input: Vertex
  Input: HashVertex
  Output: Null
+ 
  If Vertex.getNearbyVertex==0
  	return
  end
+ 
  int weight=0
 //weight for record
 
- for(int i=0; i<Vertex.numberOfVertex; i++)
+for(int i=0; i<Vertex.numberOfVertex; i++)
 //Iterate all neighbor
+ 
 	if Vertices[Vertex.getNearbyVertex[i]-1].getVal> vertex.getVal
  	//compare Val(can be delete)
+  
 		if Vertices[Vertex.getNearbyVertex[i]-1] is find in HashVertices
 		// check if in hashtable
+  
 			if weight< HashVertices[ Vertices[Vertex.getNearbyVertex[i]-1]]
 			//compare with record
+   
 				weight=HashVertices[ Vertices[Vertex.getNearbyVertex[i]-1]]
 				//update weight
 			end
 		end
 	end
  end
+ 
  weight=weight+Vertex.getweight
  //weight plus own
+ 
  HashVertices[Vertex]=weight
 
 ### 7. Describe how you could modify your algorithm to identify the maximum-scoring tour, not just the maximum possible score.
