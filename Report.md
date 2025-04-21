@@ -1,6 +1,4 @@
-1. How you can break down a large problem instance into one or more smaller instances? Your
-answer should include how the solution to the original problem is constructed from the sub-
-problems and why this breakdown makes sense.
+### 1. How you can break down a large problem instance into one or more smaller instances? Your answer should include how the solution to the original problem is constructed from the sub- problems and why this breakdown makes sense.
 
 When thinking about this project, we found that it exhibited features of optimal substructure, where this problem
 can be broken down into sub-problems as follows:
@@ -17,7 +15,7 @@ store it into a data structure, such as a hashtable. Do this for all the vertice
 The solution to the original problem is the score from the path followed from the vertex with the highest
 score in the hashtable.
 
-2. What are the base cases of this problem, and what are their solutions?
+### 2. What are the base cases of this problem, and what are their solutions?
 Base Case 1: The vertex value has the maximum value out of all vertices in the graph, therefore return the value
 of its weight/score (1 or 2).
 Base Case 2: The vertex is not adjacent to any vertices with a larger value, therefore we cannot "go" anywhere
@@ -26,15 +24,14 @@ Base Case 3: The vertex already has a max_path value in the hashtable. We have a
 path to go from this vertex, so we return the value of the max_path of this vertex stored in the hashtable.
 
 
-3. What data structure would you use to store the partial solutions to this problem? Justify
-your answer.
+### 3. What data structure would you use to store the partial solutions to this problem? Justify your answer.
 - hash table
 - O(1) if you already have the value stored so its fast
 
 (TODO)
 
 
-4. Give pseudocode for an algorithm that uses memoization to compute the maximum score.
+### 4. Give pseudocode for an algorithm that uses memoization to compute the maximum score.
 // Global arrays
 dp[1…n]       // dp[i] = max score starting from space i
 visited[1…n] // array indicating true if i already visited, initialized to all false
@@ -79,10 +76,10 @@ def getMaxScore(n):
 
 	return(maxScore, path)
 
-5. What is the time complexity of your memoized algorithm?
+### 5. What is the time complexity of your memoized algorithm?
 O(n+m)
 
-6. Give pseudocode for an iterative algorithm for this problem.
+### 6. Give pseudocode for an iterative algorithm for this problem.
  Algorithm: LongestTourScore
  Input: Vertices 
  Output: Maxscore
@@ -135,16 +132,13 @@ int Max=0
 //weight plus own
  HashVertices[Vertex]=weight
 
-7. Describe how you could modify your algorithm to identify the maximum-scoring tour, not
-just the maximum possible score.
+### 7. Describe how you could modify your algorithm to identify the maximum-scoring tour, not just the maximum possible score.
 
 
 (TODO)
 
 
-Bonus Describe (briefly) how you would modify your algorithm to account for adjacent equal values
-and wildcards. There is likely no algorithm that is guaranteed to solve this problem in
-polynomial time, so just focus on solving the problem correctly rather than quickly
+### Bonus Describe (briefly) how you would modify your algorithm to account for adjacent equal values and wildcards. There is likely no algorithm that is guaranteed to solve this problem in polynomial time, so just focus on solving the problem correctly rather than quickly
 
 
 
