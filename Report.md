@@ -143,11 +143,17 @@ for(int i=0; i<Vertex.numberOfVertex; i++)
 ### 7. Describe how you could modify your algorithm to identify the maximum-scoring tour, not just the maximum possible score.
 
 
-(TODO)
+We talked about 2 possible soltuison:
+1) store each max path for all vertices in a 2d array
+2) only have 1 array which stores the max patj for all vertices and if score of path is greater than current, replace, if not, leave it.
 
 
 ### Bonus Describe (briefly) how you would modify your algorithm to account for adjacent equal values and wildcards. There is likely no algorithm that is guaranteed to solve this problem in polynomial time, so just focus on solving the problem correctly rather than quickly
 
-
+greater than or equal to instead of just greater than
+number of possible paths increases with this
+some sort of cycle detection
+wildcards can always be gone to
+isVisited bool field in Vertex class
 
 (TODO)
