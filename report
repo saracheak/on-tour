@@ -1,16 +1,38 @@
 1. How you can break down a large problem instance into one or more smaller instances? Your
 answer should include how the solution to the original problem is constructed from the sub-
 problems and why this breakdown makes sense.
-- breaking down into paths and max score of each vertex so when we come across the vertex again we already know the max score
+
+When thinking about this project, we found that it exhibited features of optimal substructure, where this problem
+can be broken down into sub-problems as follows:
+The original problem: Find the path that leads to the maximum score of a directed graph with vertices.
+The sub-problem: From a vertex V, find the maximum score path I can take (and store into a datastructure).
+The sub-sub-problem: Find all the paths and path-scores I can take from Vertex V.
+
+The way we thought about this was to first address the sub-sub-problem. If we haven't encountered this vertex
+before, we calculate all the paths we can take from this vertex. 
+
+Next to address the sub-problem. From all these paths calculated, choose the one which gives us the max score and 
+store it into a data structure, such as a hashtable. Do this for all the vertices.
+
+The solution to the original problem is the score from the path followed from the vertex with the highest
+score in the hashtable.
 
 2. What are the base cases of this problem, and what are their solutions?
-- max vertex = 1 / or 2 circles (?)
-- if value is already in the hash table
+Base Case 1: The vertex value has the maximum value out of all vertices in the graph, therefore return the value
+of its weight/score (1 or 2).
+Base Case 2: The vertex is not adjacent to any vertices with a larger value, therefore we cannot "go" anywhere
+and we return the value of its weight/score (1 or 2).
+Base Case 3: The vertex already has a max_path value in the hashtable. We have already calculated the optimal max 
+path to go from this vertex, so we return the value of the max_path of this vertex stored in the hashtable.
+
 
 3. What data structure would you use to store the partial solutions to this problem? Justify
 your answer.
 - hash table
 - O(1) if you already have the value stored so its fast
+
+(TODO)
+
 
 4. Give pseudocode for an algorithm that uses memoization to compute the maximum score.
 // Global arrays
@@ -117,6 +139,13 @@ int Max=0
 just the maximum possible score.
 
 
+(TODO)
+
+
 Bonus Describe (briefly) how you would modify your algorithm to account for adjacent equal values
 and wildcards. There is likely no algorithm that is guaranteed to solve this problem in
 polynomial time, so just focus on solving the problem correctly rather than quickly
+
+
+
+(TODO)
