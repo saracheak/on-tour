@@ -1,0 +1,111 @@
+import java.io*;
+import java.util;
+
+// Memoized top-down DP implementation
+public class onTourCalc{
+
+    // Class to keep track of every space/node on the board
+    static class vetex{
+        int value;  // Number written in each space/node
+        int points; // Point associated with space, either 1 or 2
+
+        List<Integer> neighbors; // List of connected spaces
+
+        Vertex(int value, int points){
+            this.value = value;
+            this.points = points;
+            this.neighbors = new ArrayList<>(); 
+        }
+    }
+
+    static Vertex[] graph; // Graph of all spaces
+    static int[] dp; // max score from each starting point
+    static int[] next; // next node in path
+    static boolean[] visited;   // visited[i] tells if i has been visited
+
+    publi static void main(String[] args) throws IOException {
+        // Read input from input.txt
+        Bufferreader br = new Bufferreader(new FileReader("input.txt")); // Read the number of spaces on the board
+        int n  = Integer.parseInt(br.readLine()); // Number of spaces in the graph
+
+        dp = new int[n+1]; // stoes the maximum score starting from i
+        graph = new Vertex[n+1]; // Stores value, points, list of neighbors 
+        next = new int[n+1]; // tells us the best node after i
+        visited = new boolean[n+1];
+
+        // Parsing each line and build the graph
+        for(int i =1; i<= n; i++){
+            String[] parts = br.readLine().split("");
+            int val = Integer.parseInt(parts[0]);   // value written in the space
+            int pts = Integer.parseInt(parts[1]); // value of point in the space, either 1 or 2 
+            int d = Integer.parseInt(parts[2]);   // number of neighbors
+
+            // creating a vertex and storing it
+            graph[i]= new Vertex(val, pts);   
+
+            // adding all neighbors      
+            for(int j = 0; j < d; j++){
+                int neighbor = Integer.parseInt(part[3+j]);
+                graph[i].neighbors.add(neighbor);
+            }
+
+        }
+        br.close(); // close file after reading
+
+        // commute the max score from every node as a starting positon 
+        int maxScore = 0;
+        int startNode = 1;
+
+        for(int i =1; i<=n; i++){
+            int score = compMax(i);  // recurssive DP function
+            if (score > maxScore){
+                maxScore = score;
+                startNode = i;      // keeping track of the starting nodes
+            }
+        }
+
+        //  Reconstruct the best path using next[]
+        List<Integer> path = new ArrayList<>();
+        int curr = startNode;
+        while(curr != 0){
+            path.add(curr);
+            curr = next[curr]; // Follow path one space at a time
+        }
+
+        // Writing result to output.txt
+        BufferredWriter bw = new BufferredWriter(new FileWriter("output.txt"));
+        bw.write(maxScore + "\n"); // print max score on first line
+        
+        // print path indices on second line
+        for(int i = 0; i< path.size(); i++){
+            bw.write(path.get(i) + (i < path.size()- 1 ? " ":" "));
+        }
+        bw.newLine();
+        bw.close();
+
+        }
+        // Recurssive DP function to compute max score starting from node i
+        static int computeMax(int i){
+            if(visited[i]) return dp[i]; // Return cached result if already computed
+            visited[i] = true;
+            int maxNeighbor = 0; // Best score from neighbors
+            int bestNeighbor = 0; // Neighbor with best score
+            
+            // Testing each neighbor j of node i
+            for(int j : graph[i].neighbors){
+                // Considering only graph spaces with larger values
+                if(graph[j].value >graph[i].value){
+                    int score = computeMax(j); // Recurssive call to explore path
+                    if(score > maxNeighbor){
+                        maxNeighbor = score;
+                        bestNeighbor = j    // Recording best performing neighbor
+                    }
+                }
+            }
+            // storing results in dp and next arrays
+            dp[i] = graph[i].points + maxNeighbor; // Total score = current space + best path
+            next[i] = bestNeighbor; // pointer to next step on best path
+            return dp[i];           // Return max score from path igr4
+        }
+
+    }
