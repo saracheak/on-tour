@@ -1,4 +1,4 @@
-package DataProcessing;
+package OnTourScore;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
