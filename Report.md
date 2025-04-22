@@ -150,14 +150,14 @@ We talked about 2 possible solutions for finding the maximum tour, not just the 
    This makes it very easy to get the highest scoring tour from any vertex chosen, however, the space complexity is an issue. Just initialising the array is O(n), and then storing the vertex value O(1) and maximum tour O(n-1) for each vertex. Resulting in a worst case space complexity of O(n^2).
 2) declare a an which stores the max tour for all vertices
    This would be a global variable array which stores the maximum-scoring tour. As we iterate through each of the vertices, we store the tour for the vertex into the global array IF it has a score higher than the current score, or array is empty (as it would be before the first vertex has been visited). Else, we know that this tour is not the maximum-scoring tour for all vertices, so keep what is currently stored in the array. 
-   
+
 
 
 ### Bonus Describe (briefly) how you would modify your algorithm to account for adjacent equal values and wildcards. There is likely no algorithm that is guaranteed to solve this problem in polynomial time, so just focus on solving the problem correctly rather than quickly
 
 When comparing whether we can go to an adjacent vertex B from vertex A, we are currently only moving if B>A. To acccount for adjacent equal values, we would change to if B>=A, so only move if the adjacent vertex is greater than or equal to current vertex. 
 
-For wildcards, a solution we talked about was to assume wildcard is e.g. -1 and update traversal condition to factor this in. For example, we can move from B to A if B>A OR B == -1. This would open up more paths. (**Ask question**) . However, this may cause some issues if we have a situation such as e.g. 3 -> * -> 5 and 3 -> * -> 2. If we assume wildcard is -1, after we move to the wildcard space, we would be able to move to both 5 and 2, but we would actually only want to be able to go to 5. A solution to this is to assume that the wildcard is the same value as the vertex you have just come from, i.e. in this case, assume * to be 3. We make use of the same conditional change as in the adjacent equal values (B>=A) and this would allow us to account for wildcards. 
+For wildcards, a solution we talked about was to assume wildcard is e.g. -1 and update traversal condition to factor this in. For example, we can move from B to A if B>A OR B == -1. This would open up more paths. However, this may cause some issues if we have a situation such as e.g. 3 -> * -> 5 and 3 -> * -> 2. If we assume wildcard is -1, after we move to the wildcard space, we would be able to move to both 5 and 2, but we would actually only want to be able to go to 5. A solution to this is to assume that the wildcard is the same value as the vertex you have just come from, i.e. in this case, assume * to be 3. We make use of the same conditional change as in the adjacent equal values (B>=A) and this would allow us to account for wildcards. 
 
 The number of possible paths most likely increases with these changes and we may run into a scenario where we encounter cycles, particularly if, in a worst case such as a graph where all the vertices have the same value. In this case, it would be wise to include a alreadyVisited boolean field in the Vertex class, which is initialised to false and we can make it true everytime we visit this vertex in the path. We would add another condiition in the if statement: move to B if B>=A AND B==!alreadyVisited. This bool value would have to be reset before every path.
- 
+    when encounter wildcard comapre 2 to 3.
