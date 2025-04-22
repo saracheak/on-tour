@@ -1,10 +1,10 @@
 ### 1. How you can break down a large problem instance into one or more smaller instances? Your answer should include how the solution to the original problem is constructed from the sub- problems and why this breakdown makes sense.
 
 When thinking about this project, we found that it exhibited features of optimal substructure, where this problem
-can be broken down into sub-problems as follows:
-The original problem: Find the path that leads to the maximum score of a directed graph with vertices.
-The sub-problem: From a vertex V, find the maximum score path I can take (and store into a datastructure).
-The sub-sub-problem: Find all the paths and path-scores I can take from Vertex V.
+can be broken down into sub-problems as follows:  
+The original problem: Find the path that leads to the maximum score of a directed graph with vertices.  
+The sub-problem: From a vertex V, find the maximum score path I can take (and store into a datastructure).  
+The sub-sub-problem: Find all the paths and path-scores I can take from Vertex V.  
 
 The way we thought about this was to first address the sub-sub-problem. If we haven't encountered this vertex
 before, we calculate all the paths we can take from this vertex. 
