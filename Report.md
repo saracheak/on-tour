@@ -84,7 +84,7 @@ O(n+m)
  Algorithm: LongestTourScore
  Input: Vertices 
  Output: Maxscore
-
+```
  sort Vertices and store in Searching array
 //sort and record in a new array for finding max easier
 
@@ -105,12 +105,12 @@ int Max=0
 //Iterate Hashtable
 
  return Max
-
+```
  Algorithm : UpdateCurrent
  Input: Vertex
  Input: HashVertex
  Output: Null
- 
+ ```
  If Vertex.getNearbyVertex==0
  	return
  end
@@ -141,7 +141,7 @@ for(int i=0; i<Vertex.numberOfVertex; i++)
  //weight plus own
  
  HashVertices[Vertex]=weight
-
+```
 ### 7. Describe how you could modify your algorithm to identify the maximum-scoring tour, not just the maximum possible score.
 
 We talked about 2 possible solutions for finding the maximum tour, not just the score.
@@ -150,6 +150,7 @@ We talked about 2 possible solutions for finding the maximum tour, not just the 
    After finding the maximum score for Vertex V, store the tour that corresponds to the maximum score in the 2d array.
    After the path finding algorithm, we are left with all of the maximum paths for all of the vertices.
    This makes it very easy to get the highest scoring tour from any vertex chosen, however, the space complexity is an issue. Just initialising the array is O(n), and then storing the vertex value O(1) and maximum tour O(n-1) for each vertex. Resulting in a worst case space complexity of O(n^2).
+   
 2) declare a an which stores the max tour for all vertices
    This would be a global variable array which stores the maximum-scoring tour. As we iterate through each of the vertices, we store the tour for the vertex into the global array IF it has a score higher than the current score, or array is empty (as it would be before the first vertex has been visited). Else, we know that this tour is not the maximum-scoring tour for all vertices, so keep what is currently stored in the array. 
 
