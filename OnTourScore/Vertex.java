@@ -1,4 +1,4 @@
-package DataProcessing;
+package OnTourScore;
 
 import java.util.ArrayList;
 public class Vertex{
