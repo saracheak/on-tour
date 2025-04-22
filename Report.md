@@ -155,5 +155,6 @@ number of possible paths increases with this
 some sort of cycle detection
 wildcards can always be gone to
 isVisited bool field in Vertex class
+assume wildcard is e.g. -1 and update traversal condition to include this
 
 (TODO)
