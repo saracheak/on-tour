@@ -33,8 +33,8 @@ Read.java reads the input file, creates Vertex objects using values from the fil
 
 
 
-### Arraylisttohashtable.java
-Arraylisttohashtable.java transforms data in ArrayList<Vertex> vertices into a sorted version in a hash table, storing each vertex according to their val as their key.
+### ArrayListToHashTable.java
+ArrayListToHashTable.java transforms data in ArrayList<Vertex> vertices into a sorted version in a hash table, storing each vertex according to their val as their key.
 
   Hashtable<Integer,Vertex> getHashVertex;
   declare hashtable
