@@ -31,50 +31,48 @@ We used a hash table for this as we needed a structure that could map our vertex
 
 
 ### 4. Give pseudocode for an algorithm that uses memoization to compute the maximum score.
-// Global arrays
-dp[1…n]       // dp[i] = max score starting from space i
-visited[1…n] // array indicating true if i already visited, initialized to all false
-nb[1…n]       // list of neighbors adjacent to space i
-value[1…n]  // number written in space i
-points[1…n] // point value for the space(1 or 2)
-next[1…n]    // best next node after i on max scoring path, initialized to null
+// Global maps
+dp= empty map       // dp[v] = max score starting from space v
+visited = empty map // visited[v] indicating true if v already visited
+next= empty map  // next[v] = best next vertex on the max path starting with v
 
-def calcScore(n):
-	if visited[i]:
-		return dp[i]
-	visited[i] = true
-	best = 0
-	next[i] = null
+def calcScore(v):
+	if visited[v]:
+		return dp[v]
+	visited[v] = true
+	bestScore = 0
+	bestNext = null
 
-// Explore neighbors with higher values
-	for neighbor j in nb[i]:
-		if value[j] > value[i]:
-			score = calcScore(j)
-			if score > best:
-				best  = score
-				next[i] = j  // tracking next best space
-	dp[i] = points[i] + best
-	return dp[i]
+// Explore neighbors of v
+	for neighbor u in v.neighbors:
+		if u.value > v.value:
+			score = calcScore(u)
+			if score > bestScore:
+				bestScore = score
+				bestNext = u  // tracking next best space
+	// Score final results in dp and ext
+	dp[v] =v.points + bestScore
+	next[v] = bestNext
+	return dp[v]
 
-def getMaxScore(n):
+def getMaxScore(graph):
 	maxScore = 0
-	start = 1
+	start = null
 	
-	// Getting score for all starting nodes
-	for i= 1 to n:
-		score = calcScore(i)
+	//  Starting tour from each vertex
+	for each vertex v in graph:
+		score = calcScore(v)
 		if score > maxScore:
 			maxScore = score
-			start = i
+			start = v
 
 	// Reconstructing best path
-	path = []
+	path = empty list
   	while start != null:
 		path.append(start)
 		start = next(start)
 
 	return(maxScore, path)
-
 ### 5. What is the time complexity of your memoized algorithm?
 O(n+m)
 
