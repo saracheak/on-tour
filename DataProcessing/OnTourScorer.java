@@ -1,3 +1,5 @@
+package DataProcessing;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -5,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-public class MaxScore {
+public class OnTourScorer {
     private static void sortVertices(List<Vertex> vertices,List<Integer> searchArray){
         for (int i = 0; i < vertices.size(); i++) {
             searchArray.add(i);

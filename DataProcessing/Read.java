@@ -1,3 +1,5 @@
+package DataProcessing;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -49,7 +51,6 @@ public class Read {
         try {
             String[] tokens = line.split("\\s+");
             if (tokens.length < 3) {
-                System.err.println("wrong numbers of data: " + line);
                 return null;
             }
 
