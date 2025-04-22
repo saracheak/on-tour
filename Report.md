@@ -155,11 +155,9 @@ We talked about 2 possible solutions for finding the maximum tour, not just the 
 
 ### Bonus Describe (briefly) how you would modify your algorithm to account for adjacent equal values and wildcards. There is likely no algorithm that is guaranteed to solve this problem in polynomial time, so just focus on solving the problem correctly rather than quickly
 
-greater than or equal to instead of just greater than
-number of possible paths increases with this
-some sort of cycle detection
-wildcards can always be gone to
-isVisited bool field in Vertex class
-assume wildcard is e.g. -1 and update traversal condition to include this
+When comparing whether we can go to an adjacent vertex B from vertex A, we are currently only moving if B>A. To acccount for adjacent equal values, we would change to if B>=A, so only move if the adjacent vertex is greater than or equal to current vertex. 
 
-(TODO)
+For wildcards, a solution we talked about was to assume wildcard is e.g. -1 and update traversal condition to factor this in. For example, we can move from B to A if B>A OR B == -1. This would open up more paths. (**Ask question**) . However, this may cause some issues if we have a situation such as e.g. 3 -> * -> 5 and 3 -> * -> 2. If we assume wildcard is -1, after we move to the wildcard space, we would be able to move to both 5 and 2, but we would actually only want to be able to go to 5. A solution to this is to assume that the wildcard is the same value as the vertex you have just come from, i.e. in this case, assume * to be 3. We make use of the same conditional change as in the adjacent equal values (B>=A) and this would allow us to account for wildcards. 
+
+The number of possible paths most likely increases with these changes and we may run into a scenario where we encounter cycles, particularly if, in a worst case such as a graph where all the vertices have the same value. In this case, it would be wise to include a alreadyVisited boolean field in the Vertex class, which is initialised to false and we can make it true everytime we visit this vertex in the path. We would add another condiition in the if statement: move to B if B>=A AND B==!alreadyVisited. This bool value would have to be reset before every path.
+ 
