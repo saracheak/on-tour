@@ -152,7 +152,7 @@ We talked about 2 possible solutions for finding the maximum tour, not just the 
    After the path finding algorithm, we are left with all of the maximum paths for all of the vertices.
    This makes it very easy to get the highest scoring tour from any vertex chosen, however, the space complexity is an issue. Just initialising the array is O(n), and then storing the vertex value O(1) and maximum tour O(n-1) for each vertex. Resulting in a worst case space complexity of O(n^2).
    
-2) declare a an which stores the max tour for all vertices.
+2) declare an array which stores the max tour for all vertices.
    
    This would be a global variable array which stores the maximum-scoring tour. As we iterate through each of the vertices, we store the tour for the vertex into the global array IF it has a score higher than the current score, or array is empty (as it would be before the first vertex has been visited). Else, we know that this tour is not the maximum-scoring tour for all vertices, so keep what is currently stored in the array. 
 
