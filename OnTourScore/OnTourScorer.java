@@ -131,7 +131,7 @@ public class OnTourScorer {
      * 4. Generate output
      */
     public static void main(String args[]){
-        String fileName="small-input.txt";
+        String fileName="input.txt";
         Read Input=new Read(fileName);
         List<Vertex> vertices=Input.getVertices();
         List<Integer> searchArray = new ArrayList<>();
