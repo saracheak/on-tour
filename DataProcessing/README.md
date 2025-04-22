@@ -1,15 +1,11 @@
-Feel Free to change anything! More efficient or creative is great!
+### OnTourScorer.java (includes main class)
 
 
+### Vertex.java
+Vertex.java is our blueprint class where we create vertex objects from. Each vertex has int val (vertex value), int weight (score), ArrayList<Integer> numbersOfVertex (arraylist of neighbour vertices' indices), ArrayList<Integer> nearbyvertex (arraylist of neighbour vertices' values). Includes getter functions for each of these fields. 
 
-
-Vertex.java 
-It is main structure I use to store each vertex's information, including its value called val as int, its weight call weight as int, its number of nearby vertex called numbersOfVertex as int and the nearby vertexs store in ArrayList<int> called nearbyvertex.
-It also contains functions like getVal or getWeight but I'm not sure if we need to make it more formal. For example, declear two functions about val, one is getVal and other one is changeVal to make private int val.
-
-
-Read.java
-This file's main purpose is to read the input file and store the data in actual data structure. Using "List<Vertex> vertices " to store each vertex information for easier searching. NOTICE: the example-input file do not have line 0, but vertices do have 0 number as the first vertices. It really important when we need find the nearby vertex, we may subtracts 1.
+### Read.java
+Read.java reads the input file, creates Vertex objects using values from the file and stores Vertexes in List<Vertex> vertices for easier searching. NOTICE: the example-input file do not have line 0, but vertices do have 0 number as the first vertices. It really important when we need find the nearby vertex, we subtract by 1.
   
   public static List<Vertex> vertices = new ArrayList<>(); 
   store the vertices from input
@@ -37,14 +33,14 @@ This file's main purpose is to read the input file and store the data in actual 
 
 
 
-Arraylisttohashtable.java
-This file is to transform the data in ArrayList<vextex> into a sorted version in a hash map(store each vertex according to their val as their key)
+### Arraylisttohashtable.java
+Arraylisttohashtable.java transforms data in ArrayList<Vertex> vertices into a sorted version in a hash table, storing each vertex according to their val as their key.
 
   Hashtable<Integer,Vertex> getHashVertex;
-  declear hashtable
+  declare hashtable
 
   public void vertexToHash
-  Input vertice(as ArrayList<vertex>), store in hashtable
+  Input Vertex(as ArrayList<vertex>), store in hashtable
   put in according to their value
 
 
